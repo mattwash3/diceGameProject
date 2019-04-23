@@ -1,0 +1,28 @@
+As a user, I want to have background lore explained at the start of the game.
+
+
+As a user, I want the enemies I face to be randomly generated.
+
+
+As a user, I want to face wave after wave of enemies until my party is defeated.
+
+
+As a user, I want my units to attack based off of 20-sided die for hit chance.
+
+
+As a user, I want my units to have their own stats.
+
+
+As a user, I want a dynamically  updated user interface based off of encounters and battle.
+
+
+As a user, I want the difficulty to scale over time.
+
+
+Bonus:
+
+
+As a user, I want to be able to select my party.
+
+
+As a user, I want combat effects.
