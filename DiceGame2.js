@@ -4,7 +4,7 @@ function playGame(){
     let playerAttack = characterAtk();
     let currentMonster = getMonster();
     battle(playerVitals, currentMonster, playerAttack);
-    }
+} 
 
 //Dice roll function
 function rollDie(numberOfSides){
@@ -14,29 +14,55 @@ function rollDie(numberOfSides){
 
 function battle(playerVitals, currentMonster, playerAttack){
     while(playerVitals && currentMonster.hp > 0){
-        let bonusValue = bonusMultiplier();
+        playerAttack = bonusMultiplier(playerAttack);
         playerVitality(playerVitals, currentMonster);
-        currentMonster = monsterVitality(currentMonster, playerAttack, bonusValue);
+        currentMonster = monsterVitality(currentMonster, playerAttack);
     }
 }
 
-function bonusMultiplier(){
+function bonusMultiplier(playerAttack){
+    let bonus = 1;
     let dieValue = rollDie(20);
     if(dieValue == 1 || dieValue == 3 || dieValue == 5 || dieValue == 7 || dieValue == 9 || dieValue ==11 ||
         dieValue == 13 || dieValue == 15 || dieValue == 17 || dieValue == 19){
-        return rollDie(4)
+            bonus = bonusValue(playerAttack);
         }
+        return bonus;
+}
+
+function bonusValue(playerAttack){
+    let bonus;
+    switch(rollDie(4)){
+        case 1: 
+        console.log("Normal Attack");
+        bonus = (playerAttack) * 1;
+        break;
+        case 2: 
+        console.log("Heavy Attack");
+        bonus = (playerAttack) * 2;
+        break;
+        case 3: 
+        console.log("Normal Attack");
+        bonus = (playerAttack) * 1;
+        break;
+        case 4: 
+        console.log("Critical Hit");
+        bonus = (playerAttack) * 3;
+        break;
+    }
+    console.log(bonus);
+    return bonus;
 }
 
 function playerVitality(playerVitals, currentMonster){
     playerVitals -= currentMonster.atk;
     if(playerVitals <= 0){
-        alert("Game Over");
+        prompt("Game Over");
     }
 }
 
-function monsterVitality(currentMonster, playerAttack, bonusValue){
-    if(bonusValue > 0){
+function monsterVitality(currentMonster, playerAttack, bonus){
+    if(bonus > 0){
         playerAttack = playerAttack * 2;
     }
     currentMonster.hp -= playerAttack;
@@ -45,7 +71,6 @@ function monsterVitality(currentMonster, playerAttack, bonusValue){
     }
     return currentMonster;
 }
-
 //Enemy Generator
 function getMonster(){
     let currentMonster;
@@ -126,7 +151,7 @@ function characterHp(){
     switch(rollDie(8)){
         case 1:
         console.log('HP +50 This will be quick..')
-        playerHp = 50;
+        playerHp = 60;
         break;
         case 2:
         console.log('HP +75 Lets get this over with..')
@@ -163,58 +188,63 @@ function characterHp(){
 
 var monster1 = {
     name:'Cave Bat',
-    hp: 10,
+    hp: 8,
     atk: 2,
 };
 var monster2 = {
     name:'Snake',
-    hp: 15,
+    hp: 10,
     atk: 2,
 };
 var monster3 = {
     name:'Boar', 
-    hp: 20, 
+    hp: 15, 
     atk: 3,
 };
 var monster4 = {
     name:'Wolf', 
-    hp: 25, 
+    hp: 20, 
     atk: 3,
 };
 var monster5 = {
     name:'Goblin', 
-    hp: 30, 
+    hp: 20, 
     atk: 4,
 };
 var monster6 = {
     name:'Orc', 
-    hp: 35, 
+    hp: 25, 
     atk: 4,
 };
 var monster7 = {
     name:'Ogre', 
-    hp: 40, 
+    hp: 30, 
     atk: 6,
 };
 var monster8 = {
     name:'Giant', 
-    hp: 50, 
+    hp: 40, 
     atk: 7,
 };
 var monster9 = {
     name:'Mini Boss- Rabbit', 
-    hp: 100, 
+    hp: 60, 
     atk: 10,
 };
 var monster10 = {
     name:'-Boss- Slime', 
-    hp: 150, 
+    hp: 100, 
     atk: 12,
 };
 
 function changeBackground(){
+    let background = ["images/background1.gif", "images/background2.gif", "images/background3.gif", "images/background4.gif", 
+    "images/background5.gif", "images/background6.gif", "images/background7.gif", "images/background8.gif", "images/background9.gif", 
+    "images/background10.gif", "images/background11.gif", "images/te1zrah.gif.gif"]
+
+
 	document.getElementById("canvas").style.background = url("images/te1zrah.gif");
 }
 
 
-playGame();
+playGame(console.log("Game Over"));
