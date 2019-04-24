@@ -1,9 +1,9 @@
 // //Master function for game
 function playGame(){
-    numberOfSides = rollDie();
-    characterAtk = rollDie(6);
+    let playerVitals = characterHp();
+    let playerAttack = characterAtk();
     let currentMonster = getMonster();
-    currentMonster.hp
+    battle(playerVitals, currentMonster, playerAttack);
     }
 
 //Dice roll function
@@ -12,10 +12,44 @@ function rollDie(numberOfSides){
     return result;
 }
 
+function battle(playerVitals, currentMonster, playerAttack){
+    while(playerVitals && currentMonster.hp > 0){
+        let bonusValue = bonusMultiplier();
+        playerVitality(playerVitals, currentMonster);
+        currentMonster = monsterVitality(currentMonster, playerAttack, bonusValue);
+    }
+}
+
+function bonusMultiplier(){
+    let dieValue = rollDie(20);
+    if(dieValue == 1 || dieValue == 3 || dieValue == 5 || dieValue == 7 || dieValue == 9 || dieValue ==11 ||
+        dieValue == 13 || dieValue == 15 || dieValue == 17 || dieValue == 19){
+        return rollDie(4)
+        }
+}
+
+function playerVitality(playerVitals, currentMonster){
+    playerVitals -= currentMonster.atk;
+    if(playerVitals <= 0){
+        alert("Game Over");
+    }
+}
+
+function monsterVitality(currentMonster, playerAttack, bonusValue){
+    if(bonusValue > 0){
+        playerAttack = playerAttack * 2;
+    }
+    currentMonster.hp -= playerAttack;
+    if(currentMonster.hp <= 0){
+        return getMonster();
+    }
+    return currentMonster;
+}
+
 //Enemy Generator
 function getMonster(){
     let currentMonster;
-    switch(rollDie(6)){
+    switch(rollDie(10)){
         case 1:
         currentMonster = monster1;
         break;
@@ -48,6 +82,8 @@ function getMonster(){
         break;
     }
         console.log("You face " + currentMonster.name);
+        console.log(currentMonster.hp);
+        console.log(currentMonster.atk);
     return currentMonster;
 }
 
@@ -79,7 +115,9 @@ function characterAtk(){
         console.log('ATK +16 BRING IT ON!!')
         playerAttack = 16;
         break;
-    } return playerAttack;
+    } 
+    console.log(playerAttack);
+    return playerAttack;
 }
 
 //Player HP
@@ -118,9 +156,10 @@ function characterHp(){
         console.log('HP +250')
         playerHp = 250;
         break;
-    } return playerHp;
+    } 
+    console.log(playerHp);
+    return playerHp;
 }
-
 
 var monster1 = {
     name:'Cave Bat',
@@ -130,37 +169,37 @@ var monster1 = {
 var monster2 = {
     name:'Snake',
     hp: 15,
-    atk: 3,
+    atk: 2,
 };
 var monster3 = {
     name:'Boar', 
     hp: 20, 
-    atk: 4,
+    atk: 3,
 };
 var monster4 = {
     name:'Wolf', 
     hp: 25, 
-    atk: 5,
+    atk: 3,
 };
 var monster5 = {
     name:'Goblin', 
     hp: 30, 
-    atk: 6,
+    atk: 4,
 };
 var monster6 = {
     name:'Orc', 
     hp: 35, 
-    atk: 7,
+    atk: 4,
 };
 var monster7 = {
     name:'Ogre', 
     hp: 40, 
-    atk: 8,
+    atk: 6,
 };
 var monster8 = {
     name:'Giant', 
     hp: 50, 
-    atk: 9,
+    atk: 7,
 };
 var monster9 = {
     name:'Mini Boss- Rabbit', 
@@ -173,9 +212,9 @@ var monster10 = {
     atk: 12,
 };
 
-
-
-
+function changeBackground(){
+	document.getElementById("canvas").style.background = url("images/te1zrah.gif");
+}
 
 
 playGame();
