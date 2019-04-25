@@ -1,5 +1,20 @@
+var canvas = document.querySelector("canvas");
+
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+var c = canvas.getContext("2d");
+
+// c.fillRect(x, y, width, height);
+c.fillStyle = 'rgba(0, 255, 0, 0.3)';
+c.fillRect(200, 200, 200, 200);
+c.fillRect(850, 200, 200, 200);
+console.log(canvas);
+
 // //Master function for game
 function playGame(){
+    let playerName = getPlayerName();
     let playerVitals = characterHp();
     let playerAttack = characterAtk();
     let currentMonster = getMonster();
@@ -10,6 +25,62 @@ function playGame(){
 function rollDie(numberOfSides){
     let result = Math.floor(Math.random()* numberOfSides) + 1;
     return result;
+}
+
+function getPlayerName(){
+    let playerName;
+    switch(rollDie(12)){
+        case 1: 
+        console.log("Naruko");
+        playerName = 1;
+        break;
+        case 2: 
+        console.log("Sawamura");
+        playerName = 2;
+        break;
+        case 3: 
+        console.log("Guy");
+        playerName = 3;
+        break;
+        case 4: 
+        console.log("Cloud");
+        playerName = 4;
+        break;
+        case 5: 
+        console.log("Onoda");
+        playerName = 5;
+        break;
+        case 6: 
+        console.log("Eijun");
+        playerName = 6;
+        break;
+        case 7: 
+        console.log("Noctis");
+        playerName = 7;
+        break;
+        case 8: 
+        console.log("Asta");
+        playerName = 8;
+        break;
+        case 9: 
+        console.log("Sora");
+        playerName = 9;
+        break;
+        case 10: 
+        console.log("Deku");
+        playerName = 10;
+        break;
+        case 11: 
+        console.log("Luffy");
+        playerName = 11;
+        break;
+        case 12: 
+        console.log("Naruto");
+        playerName = 12;
+        break;
+    }
+    console.log(playerName);
+    return playerName;
 }
 
 function battle(playerVitals, currentMonster, playerAttack){
@@ -236,15 +307,6 @@ var monster10 = {
     hp: 100, 
     atk: 12,
 };
-
-function changeBackground(){
-    let background = ["images/background1.gif", "images/background2.gif", "images/background3.gif", "images/background4.gif", 
-    "images/background5.gif", "images/background6.gif", "images/background7.gif", "images/background8.gif", "images/background9.gif", 
-    "images/background10.gif", "images/background11.gif", "images/te1zrah.gif.gif"]
-
-
-	document.getElementById("canvas").style.background = url("images/te1zrah.gif");
-}
 
 
 playGame(console.log("Game Over"));

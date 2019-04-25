@@ -8,35 +8,30 @@
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
             <link rel="stylesheet" type="text/css" href="styles.css">
         <head>
+            <style type="text/css">
+                canvas{
+                    border: 1px solid white;  
+                }
+                body{
+                    margin: 0;
+                }
+                </style>
         </head>
             <body>
-                    <!-- <img src="images/te1zrah.gif">     -->
-                    <div id="myCanvas">
-                            <canvas id="canvas" width="120" height="120"></canvas>
-                            </div>		
-                            <!-- <button type="button" onClick="">Change</button> -->
-                            
-  
-                    <div class="feature_home" style="background-image:url(image);">
-                            <p class="feature_text">Thank you for playing!</p>
-                            <a class="feature_button" href="                                     ">Roll</a>
-                         </div>
-<canvas id="ctx" width="200" height="300" style="border: 3px solid #000000;"></canvas>
-<script src="DiceGame2.js">
-var ctx = document.getElementById("ctx").getContext("2d");
-    </script>
-            
+                <canvas></canvas>
+                <script src="DiceGame2.js">
+                    window.onload = function(){
+                    var canvas = document.getElementById("canvas");
+                    var ctx = canvas.getContext("2d");
+                }
+                </script>
+                <img id="myImage"
+                    src="https://www.bleedingcool.com/wp-content/uploads/2017/12/Cloud-FFBX-600x469.png"
+                    height="300";/>
+                <img id="myImage2"
+                    src="https://banner2.kisspng.com/20180404/ghq/kisspng-godzilla-monster-of-monsters-godzilla-save-the-e-sprite-5ac52787315c77.7570754915228701512022.jpg"                    
+                    height="300";/>
         </body>
-        <!-- <title>0ns1aught</title>
-        <script type="text/javascript" src="DiceGame2.js"></script>
-      </head>
-      <body onload="init();">
-        <div>
-          <canvas id="canvas" width="800" height="600">
-          </canvas>
-        </div>
-        <img src="images/te1zrah.gif" id="canvas" style="display:none"/>
-      </body> -->
     </html>
     
 
